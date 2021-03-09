@@ -5,7 +5,7 @@ export const ArticleContext = createContext()
 export const ArticleProvider = (props) => {
     const [articles, setArticles] = useState([])
     
-        console.log("Hear me News", getArticles)
+        // console.log("Hear me News", getArticles)
 
     const getArticles = () => {
         return fetch ("http://localhost:8088/articles")
