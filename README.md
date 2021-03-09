@@ -75,3 +75,6 @@ You will be using [session storage](https://javascript.info/localstorage#session
    * Short paragraphs
    * Bulleted lists
 7. Strive for consistency.
+
+
+<iframe width="560" height="315" src='https://dbdiagram.io/embed/60465ca4fcdcb6230b2320bc'> </iframe>
