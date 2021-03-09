@@ -1,16 +1,19 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { FriendProvider } from "./Friends/FriendProvider"
+import { FriendList } from "./Friends/FriendList"
 
 export const ApplicationViews = () => {
   return (
     <>
 
-      <Route exact path="/">
-        {/* Render the component for news articles */}
-      </Route>
-      <Route path="/friends">
-        {/* Render the component for list of friends */}
-      </Route>
+      <FriendProvider>
+        <FriendList>
+          <Route path="/friends">
+            {/* Render the component for list of friends */}
+          </Route>
+        </FriendList>
+      </FriendProvider>
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>
