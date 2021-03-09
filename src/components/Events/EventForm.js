@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { EventContext } from "./CustomerProvider"
-import "./Customer.css"
+import { EventContext } from "./EventProvider"
+import "./Event.css"
 
 export const EventForm = () => {
     const { addEvent } = useContext(EventContext)
@@ -9,7 +9,7 @@ export const EventForm = () => {
     const [event, setEvent] = useState({
         name: "",
         date: "",
-        location: 0
+        location: ""
     });
   
       const history = useHistory();
@@ -30,7 +30,7 @@ export const EventForm = () => {
         setEvent(newEvent)
       }
 
-    const handleClickSaveCustomer = (event) => {
+    const handleClickSaveEvent = (event) => {
       event.preventDefault() 
        addEvent(event)
        .then(() => history.push("/events"))
@@ -46,8 +46,8 @@ export const EventForm = () => {
                 </div>
             </fieldset>
             <button className="btn btn-primary"
-            onClick={handleClickSaveCustomer}>
-            Save Customer
+            onClick={handleClickSaveEvent}>
+            Save Event
           </button>
       </form>
     )

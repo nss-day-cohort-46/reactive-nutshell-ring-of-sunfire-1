@@ -1,6 +1,6 @@
 
   import React from "react"
-  import "./Customer.css"
+  import "./Event.css"
   
   export const EventCard = ({ event }) => (
       <section className="event" id="eventId">
