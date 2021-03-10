@@ -6,6 +6,14 @@ export const FriendsContext = createContext()
 // This component establishes what data can be used.
 export const FriendProvider = (props) => {
     const [friends, setFriends] = useState([])
+    const [ searchTerms, setSearchTerms ] = useState("")
+    const [users, setUsers] = useState([])
+
+    const getUsers = () => {
+        return fetch("http://localhost:8088/users")
+        .then(res => res.json())
+        .then(setUsers)
+    }
 
     const getFriends = () => {
         return fetch("http://localhost:8088/friends")
@@ -13,17 +21,22 @@ export const FriendProvider = (props) => {
         .then(setFriends)
     }
 
-    
-/*
-        You return a context provider which has the
-        `animals` state, `getAnimals` function,
-        and the `addAnimal` function as keys. This
-        allows any child elements to access them.
-    */
+
+    const addFriend = friendObj => {
+        return fetch("http://localhost:8088/friends", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(friendObj)
+        })
+        .then(response => response.json())
+    }
+
 
     return (
         <FriendsContext.Provider value={{
-            friends, getFriends,
+            friends, getFriends,searchTerms, setSearchTerms, users, setUsers, getUsers
         }}>
             {props.children}
         </FriendsContext.Provider>

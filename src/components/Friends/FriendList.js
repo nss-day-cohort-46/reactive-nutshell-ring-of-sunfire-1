@@ -1,28 +1,46 @@
-import { React, useContext, useEffect } from "react"
+import { React, useContext, useEffect, useState } from "react"
 import { FriendsContext } from "./FriendProvider"
 import { FriendCard } from "./FriendCard"
 import "./Friend.css"
+import { useHistory } from "react-router-dom"
 
 export const FriendList = () => {
   // This state changes when `getCustomers()` is invoked below
-  const { friends, getFriends } = useContext(FriendsContext)
+  const { friends, getFriends, getUsers, searchTerms, users, setUsers } = useContext(FriendsContext)
+  
+  const [ filteredUsers, setFiltered ] = useState([])
+  const history = useHistory()
 
   //useEffect - reach out to the world for something
   useEffect(() => {
-    console.log("FriendList: useEffect - getFriends")
-    getFriends()
+    console.log("FriendList: useEffect - getUsers")
+    getUsers()
 
   }, [])
 
+  useEffect(() => {
+    if (searchTerms !== "") {
+      const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms.toLowerCase()))
+      setFiltered(subset)
 
-  return (
+    } else {
+      setFiltered(users)
+  }
+}, [searchTerms, users])
+
+
+return (
+  <>
+    <h1>Users</h1>
+
+    
     <div className="friends">
-      {console.log("FriendListList: Render", friends)}
-      {
-        friends.map(friend => {
-          return <FriendCard key={friend.id} friend={friend} />
-        })
-      }
+    {
+      filteredUsers.map(user => {
+        return <FriendCard key={user.id} user={user} />
+      })
+    }
     </div>
-  )
+  </>
+)
 }

@@ -1,10 +1,10 @@
 import React from "react"
 import "./Friend.css"
 
-export const FriendCard = ({friend}) => (
+export const FriendCard = ({user}) => (
     <section className="friend">
-        <h2>Friend</h2>
-        <h3 className="friend__name">{friend.name}</h3>
+        <button>Add Friend</button>
+        <h3 className="friend__name">{user.name}</h3>
         
     </section>
     
