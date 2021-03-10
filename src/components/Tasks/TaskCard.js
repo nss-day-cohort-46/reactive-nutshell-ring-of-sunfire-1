@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import { TaskContext } from "./TasksProvider"
 
 export const TaskCard = ({ task }) => {
-    const { deleteTask } = useContext(TaskContext)
+    const { deleteTask, completeTask } = useContext(TaskContext)
 
     const history = useHistory();
 
