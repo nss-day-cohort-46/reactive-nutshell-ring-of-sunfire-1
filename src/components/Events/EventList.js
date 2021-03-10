@@ -22,12 +22,12 @@ useEffect(() => {
           </button>
       {
         events.map(event => {
-          const happening = events.find(e => e.id === event.eventId)
+          
           
 
 
           return <EventCard key={event.id}
-                      event={happening} />
+                      event={event} />
         })
       }
     </div>
