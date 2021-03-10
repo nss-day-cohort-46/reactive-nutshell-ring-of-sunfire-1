@@ -1,5 +1,9 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { EventProvider } from "./Events/EventProvider"
+import { EventList } from "./Events/EventList"
+import { EventForm } from "./Events/EventForm"
+
 import { ArticleForm } from "./Articles/ArticleForm"
 import { ArticleList } from "./Articles/ArticleList"
 import { ArticleProvider } from "./Articles/ArticleProvider"
@@ -28,6 +32,18 @@ export const ApplicationViews = () => {
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>
+      <Route path="/tasks">
+        {/* Render the component for the user's tasks */}
+      </Route>
+            <EventProvider>
+                  <Route exact path="/events">
+                      <EventList />
+                  </Route>
+                  <Route path="/events/create">
+                         <EventForm />
+                  </Route>
+            </EventProvider>
+      
       {/* Render the component for the user's tasks */}
       <TaskProvider>
         <Route exact path="/tasks">
