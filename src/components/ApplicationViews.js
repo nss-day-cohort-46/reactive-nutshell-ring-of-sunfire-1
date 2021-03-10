@@ -21,6 +21,8 @@ export const ApplicationViews = () => {
       <FriendProvider>
         <Route exact path="/friends">
           <FriendList />
+        </Route>
+        <Route exact path="/">
           <FriendSearch />
         </Route>
       </FriendProvider>
@@ -34,7 +36,7 @@ export const ApplicationViews = () => {
         </Route>
       </ArticleProvider>
 
-      
+
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>

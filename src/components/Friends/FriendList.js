@@ -8,7 +8,7 @@ export const FriendList = () => {
   // This state changes when `getCustomers()` is invoked below
   const { friends, getFriends, getUsers, searchTerms, users, setUsers } = useContext(FriendsContext)
   
-  const [ filteredUsers, setFiltered ] = useState([])
+  
   const history = useHistory()
 
   //useEffect - reach out to the world for something
@@ -18,16 +18,7 @@ export const FriendList = () => {
 
   }, [])
 
-  useEffect(() => {
-    if (searchTerms !== "") {
-      const subset = users.filter(user => user.name.toLowerCase().includes(searchTerms.toLowerCase()))
-      setFiltered(subset)
-
-    } else {
-      setFiltered(users)
-  }
-}, [searchTerms, users])
-
+ 
 
 return (
   <>
@@ -36,7 +27,7 @@ return (
     
     <div className="friends">
     {
-      filteredUsers.map(user => {
+      users.map(user => {
         return <FriendCard key={user.id} user={user} />
       })
     }
