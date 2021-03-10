@@ -1,0 +1,24 @@
+.articleCard {
+    flex-basis: 28%;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid blue;
+    font-size: medium;
+}
+
+/* .articleCard {
+    display: flex;
+    
+    justify-content: space-around;
+  } */
+
+  .addButton {
+    height: 60px;
+
+}
+
+.animalDetail{
+    font-size: medium;
+    
+    
+}
