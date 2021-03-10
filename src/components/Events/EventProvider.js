@@ -22,9 +22,16 @@ import React, { useState, createContext } from "react"
         .then(getEvents)
     }
 
+    const deleteEvent = eventId => {
+        return fetch(`http://localhost:8088/events/${eventId}`, {
+            method: "DELETE"
+        })
+            .then(getEvents)
+    }
+
     return (
         <EventContext.Provider value={{
-            events, getEvents, addEvent
+            events, getEvents, addEvent, deleteEvent
         }}>
             {props.children}
         </EventContext.Provider>
