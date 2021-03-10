@@ -13,7 +13,7 @@ export const ArticleProvider = (props) => {
         .then(setArticles)
     }
 
-const addArticles = ArticleObj => {
+    const addArticles = ArticleObj => {
     return fetch("http://localhost:8088/articles", {
         method: "POST",
         headers: {

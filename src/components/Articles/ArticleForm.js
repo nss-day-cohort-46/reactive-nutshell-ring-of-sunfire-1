@@ -4,12 +4,14 @@ import { useHistory } from 'react-router-dom';
 import "./Article.css"
 
 export const ArticleForm = () => {
-    const { addArticle, articles, getArticles, } = useContext(ArticleContext)
+    const { addArticles, articles, getArticles, } = useContext(ArticleContext)
     // const {articles, getArticles} = useContext(ArticleContext)
+
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))    
 
     const [article, setArticle] = useState({
 
-        userID: 0,
+        userID: currentUserId,
         url: "",
         title: "",
         synopsis: "",
@@ -43,8 +45,8 @@ export const ArticleForm = () => {
         if (userId === 0) {
             window.alert("Please select user")
         } else {
-            addArticle(article)
-            .then(() => history.pushState("/articles"))
+            addArticles(articles)
+            .then(() => history.push("/articles"))
         }
     }
     
@@ -89,7 +91,9 @@ export const ArticleForm = () => {
                     </select>
                 </div>
             </filedset> */}
-            
+                <button className="saveArticle" onClick={handleClickSaveArticle}>
+                "Save Article"
+                </button>
         </form>
     )
 }
