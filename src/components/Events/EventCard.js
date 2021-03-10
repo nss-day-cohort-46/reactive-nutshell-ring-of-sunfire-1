@@ -1,12 +1,12 @@
 
   import React, { useContext }from "react"
   import { EventContext } from "./EventProvider"
-  import "./Event.css"
   import { useHistory } from "react-router-dom"
+  import "./Event.css"
 
 
   export const EventCard = ({ event }) => {
-  const {  getEventById, deleteEvent } = useContext(EventContext)
+  const { deleteEvent } = useContext(EventContext)
   
   
   const history = useHistory()

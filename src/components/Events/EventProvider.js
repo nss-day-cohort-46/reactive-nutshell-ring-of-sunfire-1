@@ -20,6 +20,7 @@ import React, { useState, createContext } from "react"
             body: JSON.stringify(eventObj)
         })
         .then(getEvents)
+          
     }
 
     const deleteEvent = eventId => {
@@ -28,6 +29,17 @@ import React, { useState, createContext } from "react"
         })
             .then(getEvents)
     }
+
+    const updateAnimal = animal => {
+        return fetch(`http://localhost:8088/animals/${animal.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(animal)
+        })
+          .then(getAnimals)
+      }
 
     return (
         <EventContext.Provider value={{
