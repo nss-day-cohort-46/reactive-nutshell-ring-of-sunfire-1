@@ -3,6 +3,16 @@ import { Route } from "react-router-dom"
 import { FriendProvider } from "./Friends/FriendProvider"
 import { FriendList } from "./Friends/FriendList"
 import { FriendSearch } from "./Friends/FriendSearch"
+import { EventProvider } from "./Events/EventProvider"
+import { EventList } from "./Events/EventList"
+import { EventForm } from "./Events/EventForm"
+
+import { ArticleForm } from "./Articles/ArticleForm"
+import { ArticleList } from "./Articles/ArticleList"
+import { ArticleProvider } from "./Articles/ArticleProvider"
+import { TaskForm } from "./Tasks/TaskForm"
+import { TaskList } from "./Tasks/TaskList"
+import { TaskProvider } from "./Tasks/TasksProvider"
 
 export const ApplicationViews = () => {
   return (
@@ -14,15 +24,38 @@ export const ApplicationViews = () => {
           <FriendSearch />
         </Route>
       </FriendProvider>
+
+      <ArticleProvider>
+        <Route exact path="/articles">
+          <ArticleList />
+        </Route>
+        <Route path="/articles/create">
+          <ArticleForm />
+        </Route>
+      </ArticleProvider>
+
+      
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>
-      <Route path="/tasks">
-        {/* Render the component for the user's tasks */}
-      </Route>
-      <Route path="/events">
-        {/* Render the component for the user's events */}
-      </Route>
+      <EventProvider>
+        <Route exact path="/events">
+          <EventList />
+        </Route>
+        <Route path="/events/create">
+          <EventForm />
+        </Route>
+      </EventProvider>
+
+      {/* Render the component for the user's tasks */}
+      <TaskProvider>
+        <Route exact path="/tasks">
+          <TaskList />
+        </Route>
+        <Route path="/tasks/create">
+          <TaskForm />
+        </Route>
+      </TaskProvider>
     </>
   )
 }
