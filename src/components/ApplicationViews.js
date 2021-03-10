@@ -1,5 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { ArticleForm } from "./Articles/ArticleForm"
 import { ArticleList } from "./Articles/ArticleList"
 import { ArticleProvider } from "./Articles/ArticleProvider"
 
@@ -8,13 +9,15 @@ export const ApplicationViews = () => {
     <>
 
       {/* <Route exact path="/articles"> */}
-        {/* Render the component for news articles */}
-          <ArticleProvider>
+       
+         <ArticleProvider>
             <Route exact path="/articles">
-              <ArticleList>
-              </ArticleList>
+                <ArticleList/>
             </Route>
-          </ArticleProvider>
+            <Route path="/articles/create">
+                <ArticleForm/>
+            </Route>
+        </ArticleProvider>
 
       <Route path="/friends">
         {/* Render the component for list of friends */}

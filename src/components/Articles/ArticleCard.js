@@ -3,12 +3,15 @@ import React from "react"
 import "./Article.css"
 // import { ArticleList } from "./ArticleList"
 
-export const ArticleCard = ( { articles }) => (
+export const ArticleCard = ({ article }) => (
+    <>
+    
     <section className="articleCard">
-        <h3 className="articleName"> Name: {articles.name}</h3>
-        <h3 className="articleUrl"> url: {articles.url}</h3>
-        <h3 className="articleTitle"> Title: {articles.title}</h3>
-        <h3 className="articleSynopsis"> Synopsis: {articles.synopsis}</h3>
-        <h3 className="articleTime"> Time: {articles.timeStamp}</h3>
+        <h3 className="articleTitle"> Title: {article.title}</h3>
+        <div className="articleUrl"> Url: {article.url}</div>
+        <div className="articleSynopsis"> Synopsis: {article.synopsis}</div>
+        <div className="articleTime"> Time: {article.timeStamp}</div>
     </section>
+    
+    </>
 )

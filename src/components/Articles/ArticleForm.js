@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import "./Article.css"
 
 export const ArticleForm = () => {
-    const { addArticle } = useContext(ArticleContext)
+    const { addArticle, articles, getArticles, } = useContext(ArticleContext)
+    // const {articles, getArticles} = useContext(ArticleContext)
 
     const [article, setArticle] = useState({
 
@@ -39,7 +40,7 @@ export const ArticleForm = () => {
         
         const userId = articles.userId
         
-        if (customerID === 0) {
+        if (userId === 0) {
             window.alert("Please select user")
         } else {
             addArticle(article)
@@ -75,7 +76,7 @@ export const ArticleForm = () => {
                     <input type="date" id="date" onChange={handleConstrolledInputChage} required autoFocus className="formControl" placeholder="" value={articles.timeStamp}/>
                 </div>
             </filedset>
-            <filedset>
+            {/* <filedset>
                 <div className="form-group">
                     <label htmlFor="userId">User: </label>
                     <select value={articles.userId} name="user" id="userId" onchange={handleConstrolledInputChage} className="form-control">
@@ -87,7 +88,7 @@ export const ArticleForm = () => {
                     ))}
                     </select>
                 </div>
-            </filedset>
+            </filedset> */}
             
         </form>
     )
