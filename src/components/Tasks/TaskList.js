@@ -6,6 +6,7 @@ import "./Task.css"
 
 export const TaskList = () => {
     const { tasks, getTasks } = useContext(TaskContext)
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
     const history = useHistory()
 
