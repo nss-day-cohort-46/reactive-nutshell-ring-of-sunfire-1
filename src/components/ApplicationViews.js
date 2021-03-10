@@ -10,12 +10,11 @@ export const ApplicationViews = () => {
       {/* <Route exact path="/articles"> */}
         {/* Render the component for news articles */}
           <ArticleProvider>
-        <Route exact path="/articles">
-
-            <ArticleList>
-            </ArticleList>
-               </Route>
-        </ArticleProvider>
+            <Route exact path="/articles">
+              <ArticleList>
+              </ArticleList>
+            </Route>
+          </ArticleProvider>
 
       <Route path="/friends">
         {/* Render the component for list of friends */}
