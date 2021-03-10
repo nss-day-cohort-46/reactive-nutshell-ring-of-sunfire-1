@@ -27,22 +27,25 @@ export const TaskForm = () => {
     }
 
     const handleSaveTask = () => {
-        setIsLoading(true);
-        if (taskId) {
-            //PUT - update
-            updateTask({
-                id: task.id,
-                name: task.name,
-                date: task.date,
-            })
-                .then(() => history.push(`/tasks/${task.id}`))
+        if (task.name === "") {
+            window.alert("Please complete all fields")
         } else {
-            //POST - add
-            addTask({
-                name: task.name,
-                date: task.date,
-            })
-                .then(() => history.push("/tasks"))
+            setIsLoading(true);
+            if (taskId) {
+                //PUT - update
+                updateTask({
+                    id: task.id,
+                    name: task.name,
+                    userId: currentUserId,
+                    date: task.date,
+                    completed: false
+                })
+                    .then(() => history.push(`/tasks/${task.id}`))
+            } else {
+                //POST - add
+                addTask(task)
+                    .then(() => history.push("/tasks"))
+            }
         }
     }
 
@@ -71,7 +74,7 @@ export const TaskForm = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="date">Job:</label>
+                    <label htmlFor="date">Task Completed By:</label>
                     <input type="date" id="date" required className="form-control" onChange={handleControlledInputChange} value={task.date} />
                 </div>
             </fieldset>
