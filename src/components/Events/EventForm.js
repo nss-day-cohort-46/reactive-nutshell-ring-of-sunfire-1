@@ -21,7 +21,7 @@ export const EventForm = () => {
 
     const handleControlledInputChange = (controlEvent) => {
       const newEvent = { ...event }
-      let selectedVal = event.target.value
+      let selectedVal = controlEvent.target.value
       //  controlEvent.preventDefault()
        if (controlEvent.target.id.includes("Id")) {
         selectedVal = parseInt(selectedVal)
@@ -30,8 +30,8 @@ export const EventForm = () => {
         setEvent(newEvent)
       }
 
-    const handleClickSaveEvent = (event) => {
-      event.preventDefault() 
+    const handleClickSaveEvent = (controlEvent) => {
+      controlEvent.preventDefault() 
        addEvent(event)
        .then(() => history.push("/events"))
     }
