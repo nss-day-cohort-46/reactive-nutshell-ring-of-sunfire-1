@@ -16,16 +16,15 @@ useEffect(() => {
   }, [])
 
   return (
+     
     <div className="events">
+      <h3>Events</h3>
        	      <button onClick={() => {history.push("/events/create")}}>
             Add Event
           </button>
       {
         events.map(event => {
           
-          
-
-
           return <EventCard key={event.id}
                       event={event} />
         })

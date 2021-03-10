@@ -30,11 +30,22 @@ import React, { useState, createContext } from "react"
             .then(getEvents)
     }
 
+    const updateEvent = event => {
+        return fetch(`http://localhost:8088/events/${event.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(event)
+        })
+          .then(getEvents)
+      }
+
     
 
     return (
         <EventContext.Provider value={{
-            events, getEvents, addEvent, deleteEvent
+            events, getEvents, addEvent, deleteEvent, updateEvent
         }}>
             {props.children}
         </EventContext.Provider>

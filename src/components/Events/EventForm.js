@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { EventContext } from "./EventProvider"
 import "./Event.css"
 
 export const EventForm = () => {
-    const { addEvent } = useContext(EventContext)
+    const { addEvent, updateEvent } = useContext(EventContext)
 
     const [event, setEvent] = useState({
         name: "",
@@ -12,28 +12,37 @@ export const EventForm = () => {
         location: ""
     });
   
+    const { eventId } = useParams();
       const history = useHistory();
-      
-    //   useEffect(() => {
-    //     .then(getEvents)
-    //   }, [])
-  
+ 
 
     const handleControlledInputChange = (controlEvent) => {
       const newEvent = { ...event }
-      let selectedVal = controlEvent.target.value
-      //  controlEvent.preventDefault()
-       if (controlEvent.target.id.includes("Id")) {
-        selectedVal = parseInt(selectedVal)
-       }
-        newEvent[controlEvent.target.id] = selectedVal
+      
+        newEvent[controlEvent.target.id] = event.target.value
         setEvent(newEvent)
       }
 
-    const handleClickSaveEvent = (controlEvent) => {
-      controlEvent.preventDefault() 
-       addEvent(event)
-       .then(() => history.push("/events"))
+    const handleClickSaveEvent = () => {
+      if (eventId){
+        //PUT - update
+        updateEvent({
+            id: event.id,
+            name: event.name,
+            date: event.date,
+            location: event.location
+        })
+        .then(() => history.push(`/eventss/detail/${event.id}`))
+      }else {
+        //POST - add
+        addEvent({
+            name: event.name,
+            date: event.date,
+            location: event.location
+            
+        })
+        .then(() => history.push("/events"))
+      }
     }
 
     return (
