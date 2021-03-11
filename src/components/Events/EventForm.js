@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { EventContext } from "./EventProvider"
+import { EventContext, getEventsById } from "./EventProvider"
 import "./Event.css"
 
 export const EventForm = () => {
@@ -16,34 +16,52 @@ export const EventForm = () => {
       const history = useHistory();
  
 
-    const handleControlledInputChange = (controlEvent) => {
-      const newEvent = { ...event }
-      
-        newEvent[controlEvent.target.id] = event.target.value
-        setEvent(newEvent)
+      const handleControlledInputChange = (controlEvent) => {
+        const newEvent = { ...event }
+        let selectedVal = controlEvent.target.value
+        
+         if (controlEvent.target.id.includes("Id")) {
+          selectedVal = parseInt(selectedVal)
+         }
+          newEvent[controlEvent.target.id] = selectedVal
+          setEvent(newEvent)
+        }
+  
+      const handleClickSaveEvent = (controlEvent) => {
+        controlEvent.preventDefault() 
+         addEvent(event)
+         .then(() => history.push("/events"))
       }
 
-    const handleClickSaveEvent = () => {
-      if (eventId){
-        //PUT - update
-        updateEvent({
-            id: event.id,
-            name: event.name,
-            date: event.date,
-            location: event.location
-        })
-        .then(() => history.push(`/eventss/detail/${event.id}`))
-      }else {
-        //POST - add
-        addEvent({
-            name: event.name,
-            date: event.date,
-            location: event.location
-            
-        })
-        .then(() => history.push("/events"))
-      }
-    }
+       const handleSaveEvent = () => {
+        if (parseInt(event.eventId) === 0) {
+            window.alert("Please select a location")
+        } else {
+        
+        } if  (eventId){
+            //PUT - update
+            updateEvent({
+                id: event.id,
+                name: event.name,
+                date: event.date,
+                eventId: parseInt(event.eventId),
+                
+            })
+            .then(() => history.push(`/events/${event.id}`))
+          } else {
+            //POST - add
+            addEvent({
+                name: event.name,
+                date: event.date,
+                eventId: parseInt(event.eventId),
+            })
+            .then(() => history.push("/events"))
+          }
+        }
+      
+      
+     
+  
 
     return (
         <form className="eventForm">
@@ -72,7 +90,7 @@ export const EventForm = () => {
           </button>
       </form>
     )
+    }
 
 
-
-   }
+    

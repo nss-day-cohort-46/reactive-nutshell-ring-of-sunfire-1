@@ -11,6 +11,7 @@ import React, { useState, createContext } from "react"
         .then(setEvents)
     }
 
+
     const addEvent = eventObj => {
         return fetch("http://localhost:8088/events", {
             method: "POST",

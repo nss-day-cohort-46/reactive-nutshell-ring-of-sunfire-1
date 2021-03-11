@@ -18,6 +18,7 @@
         })
     }
     
+    
 
   return   (
       <section className="event" id="eventId">
