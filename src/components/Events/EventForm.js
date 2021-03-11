@@ -44,7 +44,7 @@ export const EventForm = () => {
                 id: event.id,
                 name: event.name,
                 date: event.date,
-                eventId: parseInt(event.eventId),
+                
                 
             })
             .then(() => history.push(`/events/${event.id}`))
@@ -53,7 +53,7 @@ export const EventForm = () => {
             addEvent({
                 name: event.name,
                 date: event.date,
-                eventId: parseInt(event.eventId),
+                
             })
             .then(() => history.push("/events"))
           }
