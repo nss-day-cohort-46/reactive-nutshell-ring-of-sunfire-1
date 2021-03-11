@@ -1,5 +1,7 @@
 import React, { useState, createContext } from "react"
 
+export const EventContext = createContext()
+
 export const ArticleContext = createContext()
 
 export const ArticleProvider = (props) => {
@@ -13,7 +15,7 @@ export const ArticleProvider = (props) => {
         .then(setArticles)
     }
 
-const addArticles = ArticleObj => {
+    const addArticles = ArticleObj => {
     return fetch("http://localhost:8088/articles", {
         method: "POST",
         headers: {
@@ -24,9 +26,17 @@ const addArticles = ArticleObj => {
     .then(getArticles)
 }
 
+// step 3 add "delete" to delete a card
+    const deleteArticle = articleId => {
+        return fetch(`http://localhost:8088/articles/${articleId}`, {
+            method: "DELETE"
+        })
+        .then(getArticles)
+    }
+
 return (
     <ArticleContext.Provider value={{
-        articles, getArticles, addArticles
+        articles, getArticles, addArticles, deleteArticle
     }}>
         {props.children}
     </ArticleContext.Provider>
