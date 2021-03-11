@@ -40,7 +40,7 @@ export const TaskForm = () => {
                     date: task.date,
                     completed: false
                 })
-                    .then(() => history.push(`/tasks/${task.id}`))
+                    .then(() => history.push(`/tasks`))
             } else {
                 //POST - add
                 addTask(task)
