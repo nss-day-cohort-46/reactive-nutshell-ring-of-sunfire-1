@@ -63,6 +63,11 @@ export const ApplicationViews = () => {
         <Route path="/tasks/create">
              <TaskForm />
           </Route>
+          <TaskForm />
+        <Route path="/tasks/edit/:taskId(\d)">
+          <TaskForm />
+        </Route>
+      
       </TaskProvider>
     </>
   )
