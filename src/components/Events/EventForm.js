@@ -7,6 +7,7 @@ export const EventForm = () => {
     const { addEvent, getEventById, updateEvent } = useContext(EventContext)
 
     const [event, setEvent] = useState({
+
         name: "",
         date: "",
         location: ""
@@ -29,11 +30,8 @@ export const EventForm = () => {
   
       const handleClickSaveEvent = (controlEvent) => {
         controlEvent.preventDefault() 
-         addEvent(event)
-         .then(() => history.push("/events"))
-      }
-
-       const handleSaveEvent = () => {
+      
+    
         if (parseInt(event.eventId) === 0) {
             window.alert("Please select a location")
         } else {
@@ -41,7 +39,7 @@ export const EventForm = () => {
         } if  (eventId){
             //PUT - update
             updateEvent({
-                id: event.id,
+                id: eventId,
                 name: event.name,
                 date: event.date,
                 
