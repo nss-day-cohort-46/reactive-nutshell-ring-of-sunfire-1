@@ -35,13 +35,13 @@ export const ArticleProvider = (props) => {
     }
 
     // step 4 add "Put" method for "Editing" then add "updateArticle" to line 50
-    const updateArticle = editarticle => {
+    const updateArticle = article => {
         return fetch (`http://localhost:8088/articles/${article.Id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(editarticle)
+            body: JSON.stringify(article)
         })
         .then(getArticles)
     }

@@ -5,7 +5,7 @@ import "./Article.css"
 
 
 export const ArticleForm = () => {
-    const { addArticles, articles, getArticles, } = useContext(ArticleContext)
+    const { addArticles, articles, getArticles } = useContext(ArticleContext)
     // const {articles, getArticles} = useContext(ArticleContext)
 
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))    
@@ -48,8 +48,7 @@ export const ArticleForm = () => {
         event.preventDefault() 
         
              addArticles(article)
-            .then(() => history.push("/articles"))
-        
+            .then(() => history.push("/articles"))   
     }
     
     // in the "return" we have the actual form that will render to the Dom

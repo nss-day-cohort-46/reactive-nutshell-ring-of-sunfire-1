@@ -4,32 +4,24 @@ import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
 import { useHistory, useParams } from "react-router-dom"
 
-const history = useHistory()
-
-const [article, setArticle] = useState({})
-
-const {articleId } = useParams
-
-const { getArticlebyId, deleteArticle } = useContext(ArticleContext)
-
-const ArticleDetail = () = {
-
-   useEffect(() => {
-       getArticlebyId(article)
-    })   
-    
-            const handleClickEditEvent = () => {
-                getArticlebyId(article)
-                .then()
-    
-            }
-   
-}
-
 
 export const ArticleCard = ({ article }) => {
-
-
+    // line 10 is being used on line 38 for the "Edit"... useEffect, useState, useParams not needed here for 
+    const history = useHistory()
+        
+    // const [article, setArticle] = useState({})
+    
+    // const {articleId } = useParams
+    
+    const { deleteArticle, getArticlebyId} = useContext(ArticleContext)
+             
+    // useEffect(() => {
+    //     getArticlebyId(articleId)
+    //     .then((response) => {
+    //         setArticle(response)
+    //     })
+    // })
+    
     const handleRelease = () => {
         deleteArticle(article.id)
         .then(() => {
@@ -43,7 +35,7 @@ export const ArticleCard = ({ article }) => {
         <div className="articleUrl"> Url: {article.url}</div>
         <div className="articleSynopsis"> Synopsis: {article.synopsis}</div>
         <div className="articleTime"> Time: {article.timeStamp}</div>
-        <button onClick={handleClickEditEvent}>Edite Article</button>
+        <button onClick={() => history.push(`/articles/edit/${article.id}`)}>Edit Article</button>
         <button onClick={handleRelease}>Delete Article</button>
     </section>
 )
