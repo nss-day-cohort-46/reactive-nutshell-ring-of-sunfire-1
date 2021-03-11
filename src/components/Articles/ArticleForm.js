@@ -3,6 +3,7 @@ import { ArticleContext } from "./ArticleProvider"
 import { useHistory } from 'react-router-dom';
 import "./Article.css"
 
+
 export const ArticleForm = () => {
     const { addArticles, articles, getArticles, } = useContext(ArticleContext)
     // const {articles, getArticles} = useContext(ArticleContext)
@@ -15,7 +16,8 @@ export const ArticleForm = () => {
         url: "",
         title: "",
         synopsis: "",
-        date: ""
+        date: "",
+        // time: getTime()
     });
 
     useEffect(() => {
@@ -25,9 +27,14 @@ export const ArticleForm = () => {
     const history = useHistory();
 
     // line 25 is a function for when someone types into the form
-    const handleConstrolledInputChage = (event) => {
+    const handleControlledInputChange = (event) => {
+        // console.log("Event", event)
+
         const newArticle = {...article}
+        // console.log("newArticle", newArticle)
+
         let selectedVal = event.target.value
+            console.log(selectedVal)
 
             if (event.target.id.includes("Id")) {
                 selectedVal = parseInt(selectedVal)
@@ -40,14 +47,9 @@ export const ArticleForm = () => {
     const handleClickSaveArticle = (event) => {
         event.preventDefault() 
         
-        const userId = articles.userId
-        
-        if (userId === 0) {
-            window.alert("Please select user")
-        } else {
-            addArticles(articles)
+             addArticles(article)
             .then(() => history.push("/articles"))
-        }
+        
     }
     
     // in the "return" we have the actual form that will render to the Dom
@@ -57,40 +59,27 @@ export const ArticleForm = () => {
             <filedset>
                 <div className="form-group">
                     <label htmlFor="url">Article URL:</label>
-                    <input type="text" id="url" onChange={handleConstrolledInputChage} required autoFocus className="formControl" placeholder="Article url" value={articles.url}/>
+                    <input type="text" id="url" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article url" value={articles.url}/>
                 </div>
             </filedset>
             <filedset>
                 <div className="form-group">
                     <label htmlFor="title">Article Title: </label>
-                    <input type="text" id="title" onChange={handleConstrolledInputChage} required autoFocus className="formControl" placeholder="Article Title" value={articles.title}/>
+                    <input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article Title" value={articles.title}/>
                 </div>
             </filedset>
             <filedset>
                 <div className="form-group">
                     <label htmlFor="synopsis">Article Synopsis: </label>
-                    <input type="textarea" id="synopsis" onChange={handleConstrolledInputChage} required autoFocus className="formControl" placeholder="Article Synopsis" value={articles.synopsis}/>
+                    <input type="textarea" id="synopsis" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article Synopsis" value={articles.synopsis}/>
                 </div>
             </filedset>
             <filedset>
                 <div className="form-group">
                     <label htmlFor="title">Article Date: </label>
-                    <input type="date" id="date" onChange={handleConstrolledInputChage} required autoFocus className="formControl" placeholder="" value={articles.timeStamp}/>
+                    <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="" value={articles.timeStamp}/>
                 </div>
             </filedset>
-            {/* <filedset>
-                <div className="form-group">
-                    <label htmlFor="userId">User: </label>
-                    <select value={articles.userId} name="user" id="userId" onchange={handleConstrolledInputChage} className="form-control">
-                    <option value="0">Select a User</option>
-                    {users.map(u => (
-                        <option key={u.id} value={u.id}>
-                            {u.name}
-                        </option>
-                    ))}
-                    </select>
-                </div>
-            </filedset> */}
                 <button className="saveArticle" onClick={handleClickSaveArticle}>
                 "Save Article"
                 </button>
