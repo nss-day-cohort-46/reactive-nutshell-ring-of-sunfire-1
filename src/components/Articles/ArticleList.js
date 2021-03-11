@@ -9,7 +9,7 @@ export const ArticleList = () => {
     const history=useHistory()
 
     useEffect(() => {
-        console.log("ArticleList: useEffect")
+        // console.log("ArticleList: useEffect")
         getArticles()
     }, [])
 
