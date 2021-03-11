@@ -1,27 +1,19 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext } from "react"
 // import { Link } from "react-router-dom"
 import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory} from "react-router-dom"
 
 
 export const ArticleCard = ({ article }) => {
-    // line 10 is being used on line 38 for the "Edit"... useEffect, useState, useParams not needed here for 
+    // line 10 is being used on line 38 for the "Edit"... useEffect, useState, useParams not needed here for edit button. More code entered on form component
     const history = useHistory()
         
-    // const [article, setArticle] = useState({})
-    
-    // const {articleId } = useParams
+  
     
     const { deleteArticle, getArticlebyId} = useContext(ArticleContext)
              
-    // useEffect(() => {
-    //     getArticlebyId(articleId)
-    //     .then((response) => {
-    //         setArticle(response)
-    //     })
-    // })
-    
+       
     const handleRelease = () => {
         deleteArticle(article.id)
         .then(() => {

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import { ArticleContext } from "./ArticleProvider"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import "./Article.css"
 
 
 export const ArticleForm = () => {
-    const { addArticles, articles, getArticles } = useContext(ArticleContext)
-    // const {articles, getArticles} = useContext(ArticleContext)
+    const { addArticles, articles, getArticles, updateArticle, getArticleById } = useContext(ArticleContext)
+    // "updateArticle" on line 8 added in for "edit" feature
 
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))    
 
@@ -17,13 +17,18 @@ export const ArticleForm = () => {
         title: "",
         synopsis: "",
         date: "",
+        id: ""
         // time: getTime()
     });
 
+    // code below on line 25 and 26  added for "edit" feature
+    const [isLoading, setIsLoading] = useState(true)
+    const { articleId } = useParams;
+    
     useEffect(() => {
         getArticles()
     }, [])
-
+    
     const history = useHistory();
 
     // line 25 is a function for when someone types into the form
@@ -44,17 +49,54 @@ export const ArticleForm = () => {
             setArticle(newArticle)
     }
     
-    const handleClickSaveArticle = (event) => {
-        event.preventDefault() 
-        
-             addArticles(article)
-            .then(() => history.push("/articles"))   
+    const handleClickSaveArticle = () => {
+        // event.preventDefault() ALSO took out event in parameter of line 51
+        // This code on line 52-55  was original code before refactored for "EDIT" feature
+            //  addArticles(article)
+            // .then(() => history.push("/articles"))   
+
+            // Refactored code for "EDIT" feature
+            if(article.name === "") {
+                window.alert("Please complete all fields")
+            }else{
+                setIsLoading(true);
+                if (articleId) {
+                    updateArticle({
+                        userId: currentUserId,
+                        url: article.url,
+                        title: article.title,
+                        synopsis: article.synopsis,
+                        date: article.date,
+                        id: article.id,
+                    })
+                    .then(() => history.push(`/articles`))
+                } else {
+                    addArticles(article)
+                    .then(() => history.push("/articles"))
+            }
     }
+}
+
+        useEffect(() => {
+            getArticles().then(() => {
+                if (articleId) {
+                    getArticleById(articleId)
+                    .then(article => {
+                        setArticle(article)
+                        setIsLoading(false)
+                    })
+                } else {
+                    setIsLoading(false)
+                }
+            })
+
+        }, [])
     
     // in the "return" we have the actual form that will render to the Dom
     return (
         <form className="articleForm">
-            <h2 className="articleForm__title">New Article</h2>
+            {/* <h2 className="articleForm__title">New Article</h2> */}
+            <h2 className="articleForm__title">{articleId ? "Edit Article" : "Add Article"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="url">Article URL:</label>
@@ -79,16 +121,14 @@ export const ArticleForm = () => {
                     <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="" value={articles.timeStamp}/>
                 </div>
             </fieldset>
-                <button className="saveArticle" onClick={handleClickSaveArticle}>
-                "Save Article"
+                {/* <button className="saveArticle" onClick={handleClickSaveArticle}>  "FIRST SAVE BUTTON I DID"*/}
+                <button className="SaveEditButton" disabled={isLoading} onClick={event => {
+                    event.preventDefault()
+                    handleClickSaveArticle()
+                }}>
+                {articleId ? "Save Article" : "Add Article"}
                 </button>
         </form>
-    )
+        )
+    
 }
-
-
-// "userId": 1,
-// "url": "https://sussexroyal.com/",
-// "title": "Duke and Duchess of Sussex",
-// "synopsis": "Overview of awesome royals and their foundation",
-// "timeStamp":
