@@ -1,11 +1,32 @@
-import React from "react"
+import { React, useContext, useEffect, useState } from "react"
+import { FriendsContext } from "./FriendProvider"
+import { useHistory } from "react-router-dom"
 import "./Friend.css"
 
-export const FriendCard = ({user}) => (
-    <section className="friend">
-        <button>Add Friend</button>
-        <h3 className="friend__name">{user.name}</h3>
-        
-    </section>
+
+export const FriendCard = ({user}) => {
+    const {users, getUsers, addFriend} = useContext(FriendsContext)
+    const history = useHistory()
     
-)
+    
+    const handleAddFriend = (userId)  => {
+        addFriend({
+            userId:userId,
+            currentUserId: parseInt(sessionStorage.getItem("nutshell_user"))
+        })
+        .then(() =>history.push("/friends"))
+    }
+    return (
+        <section className="friend">
+            <button  onClick={evt =>{handleAddFriend(user.id)}}>Add Friend</button>
+            <h3 className="friend__name">{user.name}</h3>
+            
+        </section>
+        
+            )}
+    
+    
+    
+    
+    
+    
