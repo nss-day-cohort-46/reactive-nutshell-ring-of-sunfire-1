@@ -1,5 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { FriendProvider } from "./Friends/FriendProvider"
+import { FriendList } from "./Friends/FriendList"
+import { FriendSearch } from "./Friends/FriendSearch"
 import { EventProvider } from "./Events/EventProvider"
 import { EventList } from "./Events/EventList"
 import { EventForm } from "./Events/EventForm"
@@ -14,35 +17,37 @@ export const ApplicationViews = () => {
   return (
     <>
 
-      {/* <Route exact path="/articles"> */}
-       
-         <ArticleProvider>
-            <Route exact path="/articles">
-                <ArticleList/>
-            </Route>
-            <Route path="/articles/create">
-                <ArticleForm/>
-            </Route>
-        </ArticleProvider>
+      <FriendProvider>
+        <Route exact path="/friends">
+          <FriendList />
+        </Route>
+        <Route exact path="/">
+          <FriendSearch />
+        </Route>
+      </FriendProvider>
 
-      <Route path="/friends">
-        {/* Render the component for list of friends */}
-      </Route>
+      <ArticleProvider>
+        <Route exact path="/articles">
+          <ArticleList />
+        </Route>
+        <Route path="/articles/create">
+          <ArticleForm />
+        </Route>
+      </ArticleProvider>
+
+
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>
-      <Route path="/tasks">
-        {/* Render the component for the user's tasks */}
-      </Route>
-            <EventProvider>
-                  <Route exact path="/events">
-                      <EventList />
-                  </Route>
-                  <Route path="/events/create">
-                         <EventForm />
-                  </Route>
-            </EventProvider>
-      
+      <EventProvider>
+        <Route exact path="/events">
+          <EventList />
+        </Route>
+        <Route path="/events/create">
+          <EventForm />
+        </Route>
+      </EventProvider>
+
       {/* Render the component for the user's tasks */}
       <TaskProvider>
         <Route exact path="/tasks">
@@ -52,9 +57,6 @@ export const ApplicationViews = () => {
           <TaskForm />
         </Route>
       </TaskProvider>
-      <Route path="/events">
-        {/* Render the component for the user's events */}
-      </Route>
     </>
   )
 }
