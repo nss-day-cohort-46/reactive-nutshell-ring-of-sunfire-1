@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 export const FriendList = () => {
   // This state changes when `getCustomers()` is invoked below
-  const { friends, getFriends, getUsers, searchTerms, users, setUsers } = useContext(FriendsContext)
+  const { getUsers, users } = useContext(FriendsContext)
   
   
   const history = useHistory()

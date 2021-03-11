@@ -36,7 +36,7 @@ export const FriendProvider = (props) => {
 
     return (
         <FriendsContext.Provider value={{
-            friends, getFriends,searchTerms, setSearchTerms, users, setUsers, getUsers
+            friends, getFriends,searchTerms, setSearchTerms, users, setUsers, getUsers, addFriend
         }}>
             {props.children}
         </FriendsContext.Provider>
