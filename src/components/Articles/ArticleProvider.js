@@ -34,9 +34,20 @@ export const ArticleProvider = (props) => {
         .then(getArticles)
     }
 
+    // step 4 add "Put" method for "Editing" then add "updateArticle" to line 50
+    const updateArticle = editarticle => {
+        return fetch (`http://localhost:8088/articles/${article.Id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editarticle)
+        })
+        .then(getArticles)
+    }
 return (
     <ArticleContext.Provider value={{
-        articles, getArticles, addArticles, deleteArticle
+        articles, getArticles, addArticles, deleteArticle, updateArticle
     }}>
         {props.children}
     </ArticleContext.Provider>

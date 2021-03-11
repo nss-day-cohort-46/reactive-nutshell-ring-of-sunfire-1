@@ -1,15 +1,34 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 // import { Link } from "react-router-dom"
 import "./Article.css"
 import { ArticleContext } from "./ArticleProvider"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
+
+const history = useHistory()
+
+const [article, setArticle] = useState({})
+
+const {articleId } = useParams
+
+const { getArticlebyId, deleteArticle } = useContext(ArticleContext)
+
+const ArticleDetail = () = {
+
+   useEffect(() => {
+       getArticlebyId(article)
+    })   
+    
+            const handleClickEditEvent = () => {
+                getArticlebyId(article)
+                .then()
+    
+            }
+   
+}
 
 
 export const ArticleCard = ({ article }) => {
 
-    const { deleteArticle }=useContext(ArticleContext)
-
-    const history = useHistory()
 
     const handleRelease = () => {
         deleteArticle(article.id)
@@ -24,6 +43,7 @@ export const ArticleCard = ({ article }) => {
         <div className="articleUrl"> Url: {article.url}</div>
         <div className="articleSynopsis"> Synopsis: {article.synopsis}</div>
         <div className="articleTime"> Time: {article.timeStamp}</div>
+        <button onClick={handleClickEditEvent}>Edite Article</button>
         <button onClick={handleRelease}>Delete Article</button>
     </section>
 )
