@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react"
+import { useParams } from "react-router"
 
 export const TaskContext = createContext()
 
@@ -34,7 +35,7 @@ export const TaskProvider = (props) => {
             .then(getTasks)
     }
 
-    const updateTask = task => {
+    const editTask = task => {
         return fetch(`http://localhost:8088/tasks/${task.id}`, {
             method: "PUT",
             headers: {
@@ -45,9 +46,22 @@ export const TaskProvider = (props) => {
             .then(getTasks)
     }
 
+    const completeTask = (task,) => {
+        return fetch(`http://localhost:8088/tasks/${task.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                completed: true
+            }),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+            .then(getTasks)
+    }
+
     return (
         <TaskContext.Provider value={{
-            tasks, getTasks, getTaskById, addTask, deleteTask, updateTask
+            tasks, getTasks, getTaskById, addTask, deleteTask, editTask, completeTask
         }}>
             {props.children}
         </TaskContext.Provider>

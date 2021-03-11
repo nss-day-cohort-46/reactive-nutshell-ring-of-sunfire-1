@@ -7,7 +7,7 @@ import "./Task.css"
 export const TaskList = () => {
     const { tasks, getTasks } = useContext(TaskContext)
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
-
+    const userTasks = tasks.filter(tasks => currentUserId === tasks.userId)
     const history = useHistory()
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export const TaskList = () => {
             <h2>Tasks</h2>
             <button onClick={() => { history.push("/tasks/create") }}>New Task</button>
             <div className="tasks">
-                {tasks.map(task => {
+                {userTasks.map(task => {
                     return <TaskCard key={task.id} task={task} />
                 })}
             </div>

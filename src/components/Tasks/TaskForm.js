@@ -4,7 +4,7 @@ import "./Task.css"
 import { useHistory, useParams } from 'react-router-dom';
 
 export const TaskForm = () => {
-    const { getTasks, addTask, getTaskById, updateTask } = useContext(TaskContext)
+    const { getTasks, addTask, getTaskById, editTask } = useContext(TaskContext)
 
     const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
 
@@ -32,15 +32,15 @@ export const TaskForm = () => {
         } else {
             setIsLoading(true);
             if (taskId) {
-                //PUT - update
-                updateTask({
+                //PUT - edit
+                editTask({
                     id: task.id,
                     name: task.name,
                     userId: currentUserId,
                     date: task.date,
                     completed: false
                 })
-                    .then(() => history.push(`/tasks/${task.id}`))
+                    .then(() => history.push(`/tasks`))
             } else {
                 //POST - add
                 addTask(task)
