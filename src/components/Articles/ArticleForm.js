@@ -56,30 +56,30 @@ export const ArticleForm = () => {
     return (
         <form className="articleForm">
             <h2 className="articleForm__title">New Article</h2>
-            <filedset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="url">Article URL:</label>
                     <input type="text" id="url" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article url" value={articles.url}/>
                 </div>
-            </filedset>
-            <filedset>
+            </fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Article Title: </label>
                     <input type="text" id="title" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article Title" value={articles.title}/>
                 </div>
-            </filedset>
-            <filedset>
+            </fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="synopsis">Article Synopsis: </label>
                     <input type="textarea" id="synopsis" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="Article Synopsis" value={articles.synopsis}/>
                 </div>
-            </filedset>
-            <filedset>
+            </fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Article Date: </label>
                     <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="formControl" placeholder="" value={articles.timeStamp}/>
                 </div>
-            </filedset>
+            </fieldset>
                 <button className="saveArticle" onClick={handleClickSaveArticle}>
                 "Save Article"
                 </button>
