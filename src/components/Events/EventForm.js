@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { EventContext, getEventsById } from "./EventProvider"
+import { EventContext, getEventById } from "./EventProvider"
 import "./Event.css"
 
 export const EventForm = () => {
-    const { addEvent, getEventById, updateEvent } = useContext(EventContext)
+    const { addEvent, getEventById, getEvents, updateEvent } = useContext(EventContext)
 
     const [event, setEvent] = useState({
 
@@ -12,6 +12,9 @@ export const EventForm = () => {
         date: "",
         location: ""
     });
+
+    const [isLoading, setIsLoading] = useState(true);
+
   
     const { eventId } = useParams();
       const history = useHistory();
@@ -57,7 +60,19 @@ export const EventForm = () => {
           }
         }
       
-       
+        // useEffect(() => {
+        //   getEvents().then(() => {
+        //     if (eventId) {
+        //       getEventById(eventId)
+        //       .then(event => {
+        //           setEvent(event)
+        //           setIsLoading(false)
+        //       })
+        //     } else {
+        //       setIsLoading(false)
+        //     }
+        //   })
+        // }, [])
      
   
 
@@ -83,6 +98,7 @@ export const EventForm = () => {
                 </div>
           </fieldset>
             <button className="btn btn-primary"
+             disabled={isLoading}
             onClick={handleClickSaveEvent}> 
             Save Event
           </button>
