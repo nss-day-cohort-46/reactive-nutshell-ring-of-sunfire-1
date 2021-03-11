@@ -4,7 +4,7 @@ import { EventContext } from "./EventProvider"
 import "./Event.css"
 
 export const EventForm = () => {
-    const { addEvent, updateEvent } = useContext(EventContext)
+    const { addEvent, getEventById, updateEvent } = useContext(EventContext)
 
     const [event, setEvent] = useState({
         name: "",
