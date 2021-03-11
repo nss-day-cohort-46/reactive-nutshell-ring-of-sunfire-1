@@ -1,5 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { FriendProvider } from "./Friends/FriendProvider"
+import { FriendList } from "./Friends/FriendList"
+import { FriendSearch } from "./Friends/FriendSearch"
 import { EventProvider } from "./Events/EventProvider"
 import { EventList } from "./Events/EventList"
 import { EventForm } from "./Events/EventForm"
@@ -14,20 +17,25 @@ export const ApplicationViews = () => {
   return (
     <>
 
-      {/* <Route exact path="/articles"> */}
-       
-         <ArticleProvider>
-            <Route exact path="/articles">
-                <ArticleList/>
-            </Route>
-            <Route path="/articles/create">
-                <ArticleForm/>
-            </Route>
-        </ArticleProvider>
+      <FriendProvider>
+        <Route exact path="/friends">
+          <FriendList />
+        </Route>
+        <Route exact path="/">
+          <FriendSearch />
+        </Route>
+      </FriendProvider>
 
-      <Route path="/friends">
-        {/* Render the component for list of friends */}
-      </Route>
+      <ArticleProvider>
+        <Route exact path="/articles">
+          <ArticleList />
+        </Route>
+        <Route path="/articles/create">
+          <ArticleForm />
+        </Route>
+      </ArticleProvider>
+
+
       <Route path="/messages">
         {/* Render the component for the messages */}
       </Route>
