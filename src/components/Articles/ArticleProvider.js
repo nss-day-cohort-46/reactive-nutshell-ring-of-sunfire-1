@@ -34,9 +34,27 @@ export const ArticleProvider = (props) => {
         .then(getArticles)
     }
 
+    // step 4 add "Put" method for "Editing" then add "updateArticle" to line 50
+    const updateArticle = article=> {
+        // debugger
+        return fetch (`http://localhost:8088/articles/${article.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(article)
+        })
+        .then(getArticles)
+    }
+
+    // For Edit function to be used on Article Form
+    const getArticleById = (id) => {
+        return fetch(`http://localhost:8088/articles/${id}`)
+        .then(res => res.json())
+        }
 return (
     <ArticleContext.Provider value={{
-        articles, getArticles, addArticles, deleteArticle
+        articles, getArticles, addArticles, deleteArticle, updateArticle, getArticleById
     }}>
         {props.children}
     </ArticleContext.Provider>
