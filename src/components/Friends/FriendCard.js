@@ -5,7 +5,7 @@ import "./Friend.css"
 
 
 export const FriendCard = ({ user }) => {
-    const { users, getUsers, addFriend } = useContext(FriendsContext)
+    const { users, getUsers, addFriend, deleteFriend } = useContext(FriendsContext)
     const history = useHistory()
 
 
@@ -14,12 +14,12 @@ export const FriendCard = ({ user }) => {
             userId: userId,
             currentUserId: parseInt(sessionStorage.getItem("nutshell_user"))
         })
-            .then(() => history.push("/friends"))
+            .then(() => history.push("/"))
     }
     if (user.currentUserId == sessionStorage.getItem("nutshell_user")) {
         return (
             <section className="friend">
-                
+                <button onClick={evt => { deleteFriend(user.id) }}>Delete Friend</button>
                 <h3 className="friend__name">{user.user.name}</h3>
 
             </section>
