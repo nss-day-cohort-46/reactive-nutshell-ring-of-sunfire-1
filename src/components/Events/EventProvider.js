@@ -10,6 +10,11 @@ import React, { useState, createContext } from "react"
         .then(res => res.json())
         .then(setEvents)
     }
+    const getEventById = (id) => {
+        return fetch(`http://localhost:8088/events/${id}`)
+        .then(res => res.json())
+        }
+
 
     const addEvent = eventObj => {
         return fetch("http://localhost:8088/events", {
@@ -30,11 +35,22 @@ import React, { useState, createContext } from "react"
             .then(getEvents)
     }
 
+    const updateEvent = event => {
+        return fetch(`http://localhost:8088/events/${event.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(event)
+        })
+          .then(getEvents)
+      }
+
     
 
     return (
         <EventContext.Provider value={{
-            events, getEvents, addEvent, deleteEvent
+            events, getEvents, addEvent, deleteEvent, updateEvent,  getEventById
         }}>
             {props.children}
         </EventContext.Provider>

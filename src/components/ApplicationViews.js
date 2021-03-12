@@ -36,7 +36,7 @@ export const ApplicationViews = () => {
           <ArticleForm />
         </Route>
         <Route path="/articles/edit/:articleId(\d+)">
-          <ArticleForm/>
+          <ArticleForm />
         </Route>
       </ArticleProvider>
 
@@ -46,7 +46,12 @@ export const ApplicationViews = () => {
         </Route>
       </MessageProvider>
 
-
+      <Route path="/messages">
+        {/* Render the component for the messages */}
+      </Route>
+      <Route path="/tasks">
+        {/* Render the component for the user's tasks */}
+      </Route>
       <EventProvider>
         <Route exact path="/events">
           <EventList />
@@ -54,6 +59,10 @@ export const ApplicationViews = () => {
         <Route path="/events/create">
           <EventForm />
         </Route>
+        <Route path="/events/edit/:eventId(\d+)">
+          <EventForm />
+        </Route>
+
       </EventProvider>
 
       {/* Render the component for the user's tasks */}
