@@ -19,7 +19,7 @@ useEffect(() => {
      <>
     <div className="events">
       <h3>Events</h3>
-       	      <button class= "eventButton" onClick={() => {history.push("/events/create")}}>
+       	      <button className= "eventButton" onClick={() => {history.push("/events/create")}}>
             Add Event
           </button>
       {
