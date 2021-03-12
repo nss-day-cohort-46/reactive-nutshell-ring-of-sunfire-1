@@ -35,6 +35,9 @@ export const ApplicationViews = () => {
         <Route path="/articles/create">
           <ArticleForm />
         </Route>
+        <Route path="/articles/edit/:articleId(\d+)">
+          <ArticleForm/>
+        </Route>
       </ArticleProvider>
 
       <MessageProvider>
@@ -68,3 +71,5 @@ export const ApplicationViews = () => {
     </>
   )
 }
+
+// line 36 defines a url parameter edit
