@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 export const FriendList = () => {
   // This state changes when `getCustomers()` is invoked below
-  const { getUsers, users } = useContext(FriendsContext)
+  const { getUsers, users, getFriends, friends } = useContext(FriendsContext)
   
   
   const history = useHistory()
@@ -14,21 +14,24 @@ export const FriendList = () => {
   //useEffect - reach out to the world for something
   useEffect(() => {
     console.log("FriendList: useEffect - getUsers")
-    getUsers()
+    getFriends()
 
   }, [])
 
  
 
+
 return (
   <>
-    <h1>Users</h1>
+    <h1>Friends</h1>
 
     
     <div className="friends">
     {
-      users.map(user => {
-        return <FriendCard key={user.id} user={user} />
+      friends.map(friend => { if(friend.currentUserId == sessionStorage.getItem("nutshell_user")){
+         return <FriendCard key={friend.id} user={friend} />
+
+      }else return null
       })
     }
     </div>

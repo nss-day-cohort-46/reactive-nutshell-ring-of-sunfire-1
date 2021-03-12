@@ -21,26 +21,13 @@ export const FriendSearch = () => {
 
         } 
         })
-    }, [searchTerms, users])
+    }, [searchTerms])
 
 
 
-    // const saveFriend  = () => {
-        
-         
-    //     addFriend({
-    //         userId:users.id,
-    //       currentUserId: parseInt(localStorage.getItem("nutshell_user")),
-        
-            
-    //      })
-    //     }
+    
     return (
-        // <section className="friend">
-        //     <button type="button" onClick={evt =>{
-        //        evt.preventDefault()
-        //        saveFriend()
-        // </section>
+        
         <>
             User Search:
             <input type="text"
