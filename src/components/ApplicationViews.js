@@ -12,6 +12,8 @@ import { ArticleProvider } from "./Articles/ArticleProvider"
 import { TaskForm } from "./Tasks/TaskForm"
 import { TaskList } from "./Tasks/TaskList"
 import { TaskProvider } from "./Tasks/TasksProvider"
+import { MessageProvider } from "./Messages/MessageProvider"
+import { MessageList } from "./Messages/MessageList"
 
 export const ApplicationViews = () => {
   return (
@@ -34,10 +36,15 @@ export const ApplicationViews = () => {
           <ArticleForm />
         </Route>
         <Route path="/articles/edit/:articleId(\d+)">
-          <ArticleForm/>
+          <ArticleForm />
         </Route>
       </ArticleProvider>
 
+      <MessageProvider>
+        <Route exact path="/messages">
+          <MessageList />
+        </Route>
+      </MessageProvider>
 
       <Route path="/messages">
         {/* Render the component for the messages */}
@@ -45,24 +52,24 @@ export const ApplicationViews = () => {
       <Route path="/tasks">
         {/* Render the component for the user's tasks */}
       </Route>
-            <EventProvider>
-                  <Route exact path="/events">
-                      <EventList />
-                  </Route>
-                  <Route path="/events/create">
-                         <EventForm />
-                  </Route>
-                  <Route path="/events/edit/:eventId(\d+)">
-                      <EventForm />
-                  </Route>
+      <EventProvider>
+        <Route exact path="/events">
+          <EventList />
+        </Route>
+        <Route path="/events/create">
+          <EventForm />
+        </Route>
+        <Route path="/events/edit/:eventId(\d+)">
+          <EventForm />
+        </Route>
 
-            </EventProvider>
-      
+      </EventProvider>
+
       {/* Render the component for the user's tasks */}
       <TaskProvider>
-          <Route exact path="/tasks">
-             <TaskList />
-          </Route>
+        <Route exact path="/tasks">
+          <TaskList />
+        </Route>
         <Route path="/tasks/create">
           <TaskForm />
         </Route>
