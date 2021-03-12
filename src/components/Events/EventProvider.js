@@ -10,6 +10,10 @@ import React, { useState, createContext } from "react"
         .then(res => res.json())
         .then(setEvents)
     }
+    const getEventById = (id) => {
+        return fetch(`http://localhost:8088/events/${id}`)
+        .then(res => res.json())
+        }
 
 
     const addEvent = eventObj => {
@@ -46,7 +50,7 @@ import React, { useState, createContext } from "react"
 
     return (
         <EventContext.Provider value={{
-            events, getEvents, addEvent, deleteEvent, updateEvent
+            events, getEvents, addEvent, deleteEvent, updateEvent,  getEventById
         }}>
             {props.children}
         </EventContext.Provider>

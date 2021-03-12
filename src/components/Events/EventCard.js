@@ -19,7 +19,6 @@
     }
     
     
-
   return   (
       <section className="event" id="eventId">
           <h3 className="eventName">{event.name}</h3>

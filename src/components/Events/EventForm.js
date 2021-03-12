@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { EventContext, getEventById } from "./EventProvider"
+import { EventContext } from "./EventProvider"
 import "./Event.css"
 
 export const EventForm = () => {
@@ -12,6 +12,11 @@ export const EventForm = () => {
         date: "",
         location: ""
     });
+
+    useEffect(() => {
+      getEvents()
+  }, [])
+
 
     const [isLoading, setIsLoading] = useState(true);
 
@@ -38,9 +43,9 @@ export const EventForm = () => {
         if (parseInt(event.eventId) === 0) {
             window.alert("Please select a location")
         } else {
+          setIsLoading(true);
         
         } if  (eventId){
-            //PUT - update
             updateEvent({
                 id: eventId,
                 name: event.name,
@@ -54,25 +59,26 @@ export const EventForm = () => {
             addEvent({
                 name: event.name,
                 date: event.date,
+                location: event.location,
                 
             })
             .then(() => history.push("/events"))
           }
         }
       
-        // useEffect(() => {
-        //   getEvents().then(() => {
-        //     if (eventId) {
-        //       getEventById(eventId)
-        //       .then(event => {
-        //           setEvent(event)
-        //           setIsLoading(false)
-        //       })
-        //     } else {
-        //       setIsLoading(false)
-        //     }
-        //   })
-        // }, [])
+        useEffect(() => {
+          getEvents().then(() => {
+            if (eventId) {
+              getEventById(eventId)
+              .then(event => {
+                  setEvent(event)
+                  setIsLoading(false)
+              })
+            } else {
+              setIsLoading(false)
+            }
+          })
+        }, [])
      
   
 
@@ -82,13 +88,14 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Event name:</label>
-                    <input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Please enter name" value={event.name}/>
+                    <input type="text" id="name" 
+                    onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Please enter name" value={event.name}/>
                 </div>
             </fieldset>
             <fieldset>
             <div className="form-group">
                     <label htmlFor="date">Event Date:</label>
-                    <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Event date" value={event.date}/>
+                    <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="form-control" value={event.date} />
                 </div>
           </fieldset>
           <fieldset>
