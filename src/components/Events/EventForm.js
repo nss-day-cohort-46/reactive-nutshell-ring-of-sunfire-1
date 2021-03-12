@@ -50,10 +50,11 @@ export const EventForm = () => {
                 id: eventId,
                 name: event.name,
                 date: event.date,
+                location: event.location
                 
                 
             })
-            .then(() => history.push(`/events/${event.id}`))
+            .then(() => history.push("/events"))
           } else {
             //POST - add
             addEvent({
@@ -95,13 +96,15 @@ export const EventForm = () => {
             <fieldset>
             <div className="form-group">
                     <label htmlFor="date">Event Date:</label>
-                    <input type="date" id="date" onChange={handleControlledInputChange} required autoFocus className="form-control" value={event.date} />
+                    <input type="date" id="date" 
+                    onChange={handleControlledInputChange} required autoFocus className="form-control" value={event.date} />
                 </div>
           </fieldset>
           <fieldset>
             <div className="form-group">
                     <label htmlFor="location">Event Location:</label>
-                    <input type="text" id="location" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Please enter location" value={event.location}/>
+                    <input type="text" id="location" 
+                    onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Please enter location" value={event.location}/>
                 </div>
           </fieldset>
             <button className="btn btn-primary"
