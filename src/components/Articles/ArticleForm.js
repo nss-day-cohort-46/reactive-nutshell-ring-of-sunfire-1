@@ -17,13 +17,12 @@ export const ArticleForm = () => {
         title: "",
         synopsis: "",
         date: "",
-        id: ""
-        // time: getTime()
+           
     });
 
     // code below on line 25 and 26  added for "edit" feature
     const [isLoading, setIsLoading] = useState(true)
-    const { articleId } = useParams;
+    const { articleId } = useParams();
     
     useEffect(() => {
         getArticles()
@@ -41,7 +40,7 @@ export const ArticleForm = () => {
         let selectedVal = event.target.value
             console.log(selectedVal)
 
-            if (event.target.id.includes("Id")) {
+            if (event.target.id.includes("id")) {
                 selectedVal = parseInt(selectedVal)
             }
 
@@ -59,23 +58,25 @@ export const ArticleForm = () => {
             if(article.title === "") {
                 window.alert("Please complete all fields")
             }else{
-                setIsLoading(true);
-                if (articleId) {
+                setIsLoading();
+                if (articleId && article.userID === currentUserId) {
+                    
                     updateArticle({
                         userId: currentUserId,
                         url: article.url,
                         title: article.title,
                         synopsis: article.synopsis,
                         date: article.date,
-                        id: article.id,
+                        id: parseInt(articleId)
                     })
                     .then(() => history.push(`/articles`))
                 } else {
                     addArticles(article)
-                    .then(() => history.push("/articles"))
+                    .then(() => history.push(`/articles`))
             }
     }
 }
+
 
         useEffect(() => {
             getArticles().then(() => {

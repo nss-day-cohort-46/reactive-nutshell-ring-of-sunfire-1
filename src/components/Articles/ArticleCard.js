@@ -26,8 +26,8 @@ export const ArticleCard = ({ article }) => {
         <h3 className="articleTitle"> Title: {article.title}</h3>
         <div className="articleUrl"> Url: {article.url}</div>
         <div className="articleSynopsis"> Synopsis: {article.synopsis}</div>
-        <div className="articleTime"> Time: {article.timeStamp}</div>
-        <button onClick={() => history.push(`/articles/edit/${article.id}`)}>Edit Article</button>
+        <div className="articleDate">Date: {article.date}</div>
+                <button onClick={() => history.push(`/articles/edit/${article.id}`)}>Edit Article</button>
         <button onClick={handleRelease}>Delete Article</button>
     </section>
 )
