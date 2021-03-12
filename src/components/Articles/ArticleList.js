@@ -4,9 +4,15 @@ import { ArticleCard } from "./ArticleCard"
 import "./Article.css"
 import { useHistory } from "react-router"
 
+
+// userSpecific data lines 11-12 and .map() lines 32-35
 export const ArticleList = () => {
     const { articles, getArticles } = useContext(ArticleContext)
+    const currentUserId = parseInt(sessionStorage.getItem("nutshell_user"))
+    const userArticles = articles.filter(articles => currentUserId === articles.userId)
     const history=useHistory()
+
+  
 
     useEffect(() => {
         // console.log("ArticleList: useEffect")
@@ -24,7 +30,7 @@ export const ArticleList = () => {
 
             {/* step1 in "return" below */}
             {
-                articles.map(article => {
+                userArticles.map(article => {
                     return <ArticleCard key={article.id} article={article} />
                 })
             }
