@@ -36,7 +36,7 @@ export const ArticleProvider = (props) => {
 
     // step 4 add "Put" method for "Editing" then add "updateArticle" to line 50
     const updateArticle = article=> {
-        debugger
+        // debugger
         return fetch (`http://localhost:8088/articles/${article.id}`, {
             method: "PUT",
             headers: {
